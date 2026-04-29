@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1A2B3C">
+<title>Emotional Intelligence Self-Assessment | Kaduna Business School</title>
+<style>
+  :root {
+    --navy: #1A2B3C;
+    --ink: #2D3748;
+    --graphite: #4A5568;
+    --muted: #718096;
+    --hairline: #E2E8F0;
+    --paper: #FFFFFF;
+    --bone: #F7F7F5;
+    --gold: #C9A961;
+    --gold-dark: #8C7340;
+    --gold-tint: rgba(201, 169, 97, 0.08);
+    --shadow: 0 1px 2px rgba(26, 43, 60, 0.04), 0 4px 12px rgba(26, 43, 60, 0.06);
+    --font-head: Georgia, "Times New Roman", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    background: var(--bone);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ========== LAYOUT ========== */
+  .app {
+    max-width: 720px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--paper);
+    box-shadow: var(--shadow);
+  }
+
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid var(--hairline);
+    position: relative;
+  }
+  .chrome::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2px;
+    background: var(--gold);
+  }
+  .chrome img { display: block; }
+  .chrome .kbs { height: 34px; width: auto; }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--hairline);
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-bar .fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: var(--gold);
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  main {
+    padding: 28px 22px 100px;
+  }
+
+  /* ========== TYPE ========== */
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-family: var(--font-head);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-family: var(--font-head);
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .lead {
+    font-size: 16px;
+    color: var(--graphite);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .small { font-size: 13px; color: var(--muted); }
+  .gold-rule {
+    width: 32px; height: 2px;
+    background: var(--gold);
+    margin: 18px 0;
+  }
+
+  /* ========== INTRO PAGE ========== */
+  .intro-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .intro-meta .stat {
+    background: var(--bone);
+    border-left: 3px solid var(--gold);
+    padding: 12px 14px;
+  }
+  .intro-meta .stat .num {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold-dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .intro-meta .stat .lbl {
+    font-size: 11px;
+    color: var(--graphite);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .domains-preview {
+    margin: 28px 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: 20px 0;
+  }
+  .domains-preview h3 { color: var(--muted); margin-bottom: 14px; }
+  .domains-preview ol {
+    list-style: none;
+    counter-reset: dom;
+  }
+  .domains-preview ol li {
+    counter-increment: dom;
+    padding: 8px 0;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .domains-preview ol li::before {
+    content: counter(dom, decimal-leading-zero);
+    font-family: var(--font-head);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 15px;
+    min-width: 26px;
+  }
+  .domains-preview .dom-name {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 14px;
+  }
+  .domains-preview .dom-desc {
+    color: var(--graphite);
+    font-size: 13px;
+    margin-left: 8px;
+  }
+
+  .disclaimer {
+    background: var(--bone);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--muted);
+    padding: 14px 16px;
+    margin: 24px 0;
+    font-size: 13px;
+    color: var(--graphite);
+    line-height: 1.5;
+  }
+  .disclaimer strong { color: var(--navy); display: block; margin-bottom: 4px; }
+
+  /* ========== BUTTONS ========== */
+  .btn {
+    display: inline-block;
+    background: var(--navy);
+    color: white;
+    border: none;
+    padding: 16px 28px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    width: 100%;
+    text-align: center;
+    border-radius: 0;
+  }
+  .btn:hover, .btn:active { background: var(--ink); }
+  .btn:disabled { background: var(--hairline); color: var(--muted); cursor: not-allowed; }
+  .btn.secondary {
+    background: transparent;
+    color: var(--navy);
+    border: 1px solid var(--navy);
+  }
+  .btn.secondary:hover { background: var(--bone); }
+  .btn-row { display: flex; gap: 10px; margin-top: 24px; }
+  .btn-row .btn { width: auto; flex: 1; }
+
+  /* ========== QUESTION VIEW ========== */
+  .q-counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .q-counter .num {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold);
+  }
+  .q-counter .domain-tag {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .question-stem {
+    font-family: var(--font-head);
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--navy);
+    margin-bottom: 28px;
+    min-height: 100px;
+  }
+
+  .likert {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .likert-option {
+    background: var(--paper);
+    border: 1.5px solid var(--hairline);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    user-select: none;
+  }
+  .likert-option:hover, .likert-option:active {
+    border-color: var(--gold);
+    background: var(--gold-tint);
+  }
+  .likert-option.selected {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: white;
+  }
+  .likert-option.selected .lk-num { color: var(--gold); }
+  .likert-option.selected .lk-label { color: white; }
+  .lk-num {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold-dark);
+    min-width: 24px;
+  }
+  .lk-label {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hairline);
+  }
+  .nav-btn {
+    background: none;
+    border: none;
+    color: var(--graphite);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: color 0.15s ease;
+  }
+  .nav-btn:hover { color: var(--navy); }
+  .nav-btn:disabled { color: var(--hairline); cursor: not-allowed; }
+  .nav-btn.next {
+    background: var(--navy);
+    color: white;
+    padding: 12px 24px;
+  }
+  .nav-btn.next:disabled { background: var(--hairline); color: var(--muted); }
+
+  /* ========== RESULTS PAGE ========== */
+  .results-header {
+    margin-bottom: 28px;
+  }
+
+  .chart-wrap {
+    background: var(--bone);
+    padding: 20px 16px 12px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .chart-wrap canvas { max-width: 100%; }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .summary-card {
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    padding: 16px;
+    position: relative;
+  }
+  .summary-card.strength { border-left: 3px solid var(--gold); }
+  .summary-card.gap { border-left: 3px solid var(--navy); }
+  .summary-card .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .summary-card .name {
+    font-family: var(--font-head);
+    font-size: 17px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .summary-card .score {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold-dark);
+  }
+
+  .domain-block {
+    border-top: 1px solid var(--hairline);
+    padding: 22px 0;
+  }
+  .domain-block:last-of-type { border-bottom: 1px solid var(--hairline); }
+  .domain-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .domain-head .dname {
+    font-family: var(--font-head);
+    font-size: 19px;
+    color: var(--navy);
+  }
+  .domain-head .dscore {
+    font-family: var(--font-head);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold-dark);
+  }
+  .domain-band {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .band-developing { background: #FEF3C7; color: #92400E; }
+  .band-emerging { background: #DBEAFE; color: #1E40AF; }
+  .band-strong { background: #D1FAE5; color: #065F46; }
+  .domain-block .interp {
+    color: var(--graphite);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .actions-block {
+    background: var(--bone);
+    border-left: 3px solid var(--gold);
+    padding: 18px 18px 14px;
+    margin: 24px 0 8px;
+  }
+  .actions-block h3 {
+    color: var(--gold-dark);
+    margin-bottom: 12px;
+  }
+  .actions-block .action {
+    padding: 10px 0;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .actions-block .action:first-of-type { border-top: none; padding-top: 4px; }
+  .actions-block .action-num {
+    font-family: var(--font-head);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 15px;
+    min-width: 22px;
+  }
+  .actions-block .action-text {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .actions-block .action-text strong { color: var(--navy); }
+  .cadence {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 3px;
+  }
+
+  .resources {
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    padding: 16px;
+    margin-top: 16px;
+  }
+  .resources h3 { color: var(--muted); margin-bottom: 8px; font-size: 11px; }
+  .resources .res-line {
+    font-size: 13px;
+    color: var(--graphite);
+    padding: 4px 0;
+  }
+  .resources .res-line strong { color: var(--navy); }
+
+  .footer-note {
+    margin-top: 36px;
+    padding: 18px;
+    background: var(--bone);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .actions-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .actions-row .btn { flex: 1; }
+
+  /* ========== UTILITY ========== */
+  .hidden { display: none !important; }
+  .fade-in {
+    animation: fadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========== PRINT ========== */
+  @media print {
+    body { background: white; }
+    .app { box-shadow: none; max-width: 100%; }
+    .chrome { padding: 12px 22px; }
+    .actions-row, .nav-row { display: none; }
+    .domain-block { page-break-inside: avoid; }
+    .chart-wrap { page-break-inside: avoid; }
+  }
+
+  /* ========== MOBILE ========== */
+  @media (max-width: 480px) {
+    main { padding: 22px 18px 80px; }
+    h1 { font-size: 26px; }
+    h2 { font-size: 19px; }
+    .question-stem { font-size: 19px; min-height: 90px; }
+    .summary-cards { grid-template-columns: 1fr; }
+    .intro-meta { grid-template-columns: 1fr 1fr; }
+    .intro-meta .stat:nth-child(3) { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="chrome">
+    <img class="kbs" src="data:image/jpeg;base64,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" alt="Kaduna Business School">
+  </header>
+
+  <div class="progress-bar"><div class="fill" id="progressFill" style="width:0%"></div></div>
+
+  <main>
+
+    <!-- ============ INTRO ============ -->
+    <section id="intro" class="fade-in">
+      <div class="eyebrow">Self-Assessment  ·  Goleman Mixed Model</div>
+      <h1>Emotional Intelligence Profile</h1>
+      <div class="gold-rule"></div>
+      <p class="lead">A short self-reflection across the four domains of emotional intelligence. Your answers are processed on this device only and are not stored or sent anywhere.</p>
+
+      <div class="intro-meta">
+        <div class="stat">
+          <div class="num">20</div>
+          <div class="lbl">Statements</div>
+        </div>
+        <div class="stat">
+          <div class="num">~4</div>
+          <div class="lbl">Minutes</div>
+        </div>
+        <div class="stat">
+          <div class="num">4</div>
+          <div class="lbl">EI Domains</div>
+        </div>
+      </div>
+
+      <div class="domains-preview">
+        <h3>What You Will Be Profiled On</h3>
+        <ol>
+          <li>
+            <span class="dom-name">Self-Awareness</span>
+            <span class="dom-desc">Recognising your emotions and their effect on others.</span>
+          </li>
+          <li>
+            <span class="dom-name">Self-Management</span>
+            <span class="dom-desc">Regulating impulses and adapting under pressure.</span>
+          </li>
+          <li>
+            <span class="dom-name">Social Awareness</span>
+            <span class="dom-desc">Reading the emotional and political dynamics of a room.</span>
+          </li>
+          <li>
+            <span class="dom-name">Relationship Management</span>
+            <span class="dom-desc">Influencing, developing and managing conflict with others.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="disclaimer">
+        <strong>About this instrument</strong>
+        This is a pedagogical tool designed for in-class self-reflection and discussion. It is not a validated diagnostic instrument and should not be used to make hiring, promotion or clinical decisions. For research-grade assessment, see the ESCI (Hay/Korn Ferry) or EQ-i 2.0 (MHS).
+      </div>
+
+      <button class="btn" onclick="startTest()">Begin Assessment</button>
+    </section>
+
+    <!-- ============ QUESTIONS ============ -->
+    <section id="questions" class="hidden"></section>
+
+    <!-- ============ RESULTS ============ -->
+    <section id="results" class="hidden"></section>
+
+  </main>
+</div>
+
+<script>
+// ============================================================================
+// THE 20 ITEMS — 5 per Goleman domain
+// Each item has: text, domain, reverse (whether scoring is reversed)
+// Reverse-scored items help reduce response acquiescence bias.
+// ============================================================================
+const ITEMS = [
+  // Self-Awareness (5)
+  { d: "self-awareness", text: "I can name precisely what I am feeling, even in the middle of a difficult situation.", reverse: false },
+  { d: "self-awareness", text: "I am often surprised by feedback about how I came across in a meeting.", reverse: true },
+  { d: "self-awareness", text: "I notice when my mood is starting to affect my judgement, before others have to point it out.", reverse: false },
+  { d: "self-awareness", text: "I have a clear sense of my professional strengths and where I am genuinely weaker.", reverse: false },
+  { d: "self-awareness", text: "When I feel strongly about something at work, I tend to act on it before reflecting.", reverse: true },
+
+  // Self-Management (5)
+  { d: "self-management", text: "When I am under real pressure, I can hold my response and choose how to react.", reverse: false },
+  { d: "self-management", text: "I lose my composure in front of colleagues more often than I would like.", reverse: true },
+  { d: "self-management", text: "I follow through on commitments even when my motivation has dropped.", reverse: false },
+  { d: "self-management", text: "I find it difficult to recover quickly from setbacks at work.", reverse: true },
+  { d: "self-management", text: "I adapt my approach when a situation calls for something different from my preferred style.", reverse: false },
+
+  // Social Awareness (5)
+  { d: "social-awareness", text: "I can usually tell when someone is upset even if they say they are fine.", reverse: false },
+  { d: "social-awareness", text: "I read the unspoken dynamics in a room before deciding how to position something.", reverse: false },
+  { d: "social-awareness", text: "I have been told that I miss social cues that others find obvious.", reverse: true },
+  { d: "social-awareness", text: "I understand the informal power structure in groups I work with.", reverse: false },
+  { d: "social-awareness", text: "I find it hard to put myself in the shoes of someone whose view I disagree with.", reverse: true },
+
+  // Relationship Management (5)
+  { d: "relationship-management", text: "I can get others to commit to a course of action without relying on positional authority.", reverse: false },
+  { d: "relationship-management", text: "I tend to avoid difficult conversations rather than have them directly.", reverse: true },
+  { d: "relationship-management", text: "People I have managed describe me as someone who developed them.", reverse: false },
+  { d: "relationship-management", text: "When conflict arises in my team, I address it early rather than hoping it resolves itself.", reverse: false },
+  { d: "relationship-management", text: "Building rapport with people I do not naturally click with takes more effort than I usually invest.", reverse: true }
+];
+
+const LIKERT = [
+  { value: 1, label: "Strongly disagree" },
+  { value: 2, label: "Disagree" },
+  { value: 3, label: "Neither agree nor disagree" },
+  { value: 4, label: "Agree" },
+  { value: 5, label: "Strongly agree" }
+];
+
+const DOMAIN_META = {
+  "self-awareness": {
+    name: "Self-Awareness",
+    short: "Self-Awareness",
+    description: "Recognising your own emotions in real time and understanding their effect on your behaviour and on others."
+  },
+  "self-management": {
+    name: "Self-Management",
+    short: "Self-Management",
+    description: "Regulating impulses, adapting to changing circumstances, and following through on commitments under pressure."
+  },
+  "social-awareness": {
+    name: "Social Awareness",
+    short: "Social Awareness",
+    description: "Reading other people accurately, sensing group dynamics, and understanding the unspoken in a room."
+  },
+  "relationship-management": {
+    name: "Relationship Management",
+    short: "Relationships",
+    description: "Influencing without authority, developing others, and managing conflict before it calcifies."
+  }
+};
+
+// ============================================================================
+// INTERPRETATION TEXT — written for MBA-level audience
+// Each domain has three bands: developing, emerging, strong
+// ============================================================================
+const INTERP = {
+  "self-awareness": {
+    developing: "Self-awareness is currently a working edge for you. You may be acting on feelings before you have named them, or finding that others' read of you differs from your own. The good news: of all the EI domains, this is the most directly trainable. Reflection structure beats reflection effort.",
+    emerging: "You have a working sense of your emotional patterns, with blind spots in specific situations. People at this band typically read themselves well in calm conditions and less well under pressure or in unfamiliar group settings. Targeted feedback closes the gap fastest.",
+    strong: "You read yourself accurately, including under pressure. You catch your own mood-driven reasoning before it shapes a decision. The risk at this band is over-introspection. Make sure self-awareness is feeding action, not replacing it."
+  },
+  "self-management": {
+    developing: "Your responses to pressure are running ahead of your intentions more often than you would like. This shows up as visible reactivity, dropped commitments when motivation fades, or slow recovery from setbacks. The shift is from suppressing emotion to building reliable response routines.",
+    emerging: "You manage yourself well most of the time, with specific situations that catch you out. Often these are situations involving perceived disrespect, unfair criticism, or sustained ambiguity. Identifying your two or three triggers gives you most of the lever.",
+    strong: "You hold your composure and follow through reliably. You bounce back from setbacks fast and adapt your style when conditions demand it. The risk here is over-control: emotional flatness can be misread as detachment by people who need to feel you in the room."
+  },
+  "social-awareness": {
+    developing: "You may be missing emotional and political signals that are visible to others. This is rarely a perception failure; it is more often an attention failure. Slowing down in interactions and explicitly noticing tone, body language and group dynamics produces large gains quickly.",
+    emerging: "You read individuals reasonably well and miss group-level dynamics more often. People at this band tend to do well in one-to-one conversations and less well in mixed-power meetings. The lift comes from learning to read the room as a system, not just its members.",
+    strong: "You read both individuals and group dynamics with accuracy. You sense the unspoken before it surfaces. The risk: high social awareness without high relationship management can become observation without action. Make sure you are using what you see."
+  },
+  "relationship-management": {
+    developing: "The gap between knowing what to do with people and doing it is wider than you would like. You may be avoiding difficult conversations, leaning on authority instead of influence, or letting conflict in your team accumulate. Of all the domains, this is the one with the highest direct effect on the people working for you.",
+    emerging: "You manage relationships well in your comfort zone and less well outside it. People at this band typically influence peers and direct reports effectively but find conflict, difficult feedback, or building rapport with very different colleagues more taxing. Practice in the harder conditions matters most.",
+    strong: "You influence without relying on authority, develop others actively, and address conflict early. People who have worked for you describe you as someone who made them better. The risk: high relationship skill can mask low self-management when stress is high. Watch how you behave on your worst day."
+  }
+};
+
+// ============================================================================
+// REMEDIAL ACTIONS — concrete, time-bound, drawn from the EI literature
+// ============================================================================
+const ACTIONS = {
+  "self-awareness": [
+    {
+      title: "Daily emotion log (90 seconds)",
+      text: "At the end of each working day, write three lines: the strongest emotion you felt, what triggered it, and how it influenced a decision. Review the log weekly. Builds emotional granularity, which Barrett's research links directly to better regulation.",
+      cadence: "Daily for 4 weeks"
+    },
+    {
+      title: "Two-question feedback ask",
+      text: "Identify three colleagues who see you in different contexts. Ask each: 'When have you seen me at my best?' and 'When have you seen me struggle without realising it?' The second question is the one that matters.",
+      cadence: "One conversation per week for 3 weeks"
+    },
+    {
+      title: "The 10-minute pause rule",
+      text: "On any decision that touches a strong emotion, build in a 10-minute pause before responding. Use the pause to name the feeling, identify what need it points to, and then choose your response. Over time, the pause shrinks but the discipline holds.",
+      cadence: "Every emotionally-loaded decision"
+    }
+  ],
+  "self-management": [
+    {
+      title: "Map your three triggers",
+      text: "Identify the three workplace situations that most reliably knock you off balance. For each, write what you typically do and what a calmer version of you would do instead. Pre-deciding under pressure is far easier than deciding under pressure.",
+      cadence: "One sitting, then review monthly"
+    },
+    {
+      title: "Implementation intentions",
+      text: "Replace 'I will stay calm in difficult meetings' with 'When X happens, I will Y.' For example: 'When someone raises their voice, I will pause for three seconds before speaking.' If-then plans outperform general resolutions in regulation research.",
+      cadence: "Three intentions, practised for 6 weeks"
+    },
+    {
+      title: "Recovery protocol after setbacks",
+      text: "Build a written 24-hour recovery routine for use after significant setbacks: how you debrief, who you talk to, what you do not decide in the first 24 hours. The protocol exists so you do not have to design it while disregulated.",
+      cadence: "One protocol, applied as needed"
+    }
+  ],
+  "social-awareness": [
+    {
+      title: "Pre-meeting read",
+      text: "Before each meeting, write down what you think each attendee wants from this meeting and what each is worried about. After the meeting, check your guesses against what actually happened. Calibration improves rapidly.",
+      cadence: "Three meetings per week for 4 weeks"
+    },
+    {
+      title: "The slow-down rule",
+      text: "In your next three difficult conversations, ask one more question than feels comfortable before responding. The information you get from the second question is usually different from the first. This is the cheapest way to improve social reading.",
+      cadence: "Every difficult conversation"
+    },
+    {
+      title: "Map the informal power structure",
+      text: "For your immediate working environment, sketch who actually has influence regardless of title, who has informal alliances with whom, and where decisions really get made. Update the map quarterly. Most political surprises come from outdated maps.",
+      cadence: "Quarterly review"
+    }
+  ],
+  "relationship-management": [
+    {
+      title: "The conversation you are avoiding",
+      text: "Identify the most uncomfortable conversation currently sitting on your desk. Schedule it for this week. The discomfort of having difficult conversations early is always less than the cost of having them late.",
+      cadence: "One conversation per week"
+    },
+    {
+      title: "Influence without authority drill",
+      text: "Pick a current goal that requires someone outside your reporting line to act. Plan your approach without using your title. Identify their interests, the form of help they actually need, and what you can offer in return. Execute and review.",
+      cadence: "One per month"
+    },
+    {
+      title: "Developmental feedback cadence",
+      text: "For each direct report, schedule a monthly 30-minute conversation that is explicitly developmental, not operational. Two questions: 'What do you want to be doing in two years that you are not yet doing?' and 'What is one thing I could do differently that would help you?'",
+      cadence: "Monthly per direct report"
+    }
+  ]
+};
+
+const RESOURCES = {
+  "self-awareness": {
+    book: "Tasha Eurich, Insight (2017)",
+    article: "Daniel Goleman, 'What Makes a Leader?' Harvard Business Review (1998/2004)"
+  },
+  "self-management": {
+    book: "Susan David, Emotional Agility (2016)",
+    article: "Peter Bregman, 'How to Stop Reacting When You're Triggered' HBR"
+  },
+  "social-awareness": {
+    book: "Lisa Feldman Barrett, How Emotions Are Made (2017)",
+    article: "Annie McKee, 'Empathy is Key to a Great Meeting' HBR"
+  },
+  "relationship-management": {
+    book: "Douglas Stone & Sheila Heen, Difficult Conversations (rev. 2010)",
+    article: "Daniel Goleman, 'Leadership That Gets Results' HBR (2000)"
+  }
+};
+
+// ============================================================================
+// STATE
+// ============================================================================
+let state = {
+  responses: new Array(ITEMS.length).fill(null),
+  currentIndex: 0
+};
+
+// ============================================================================
+// FLOW
+// ============================================================================
+function startTest() {
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("questions").classList.remove("hidden");
+  state.currentIndex = 0;
+  renderQuestion();
+  window.scrollTo(0, 0);
+}
+
+function renderQuestion() {
+  const q = ITEMS[state.currentIndex];
+  const container = document.getElementById("questions");
+  const total = ITEMS.length;
+  const num = state.currentIndex + 1;
+  const selected = state.responses[state.currentIndex];
+
+  // Update progress bar
+  document.getElementById("progressFill").style.width = (num / total * 100) + "%";
+
+  container.innerHTML = `
+    <div class="fade-in">
+      <div class="q-counter">
+        <div class="num">${String(num).padStart(2, '0')} / ${total}</div>
+        <div class="domain-tag">${DOMAIN_META[q.d].short}</div>
+      </div>
+
+      <div class="question-stem">${q.text}</div>
+
+      <div class="likert">
+        ${LIKERT.map(l => `
+          <div class="likert-option ${selected === l.value ? 'selected' : ''}" onclick="selectOption(${l.value})">
+            <span class="lk-num">${l.value}</span>
+            <span class="lk-label">${l.label}</span>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="nav-row">
+        <button class="nav-btn" onclick="prevQuestion()" ${state.currentIndex === 0 ? 'disabled' : ''}>‹ Previous</button>
+        <button class="nav-btn next" onclick="nextQuestion()" ${selected === null ? 'disabled' : ''}>
+          ${state.currentIndex === total - 1 ? 'See your results' : 'Next ›'}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function selectOption(value) {
+  state.responses[state.currentIndex] = value;
+  renderQuestion();
+  // Auto-advance with a short delay so the user sees their selection
+  if (state.currentIndex < ITEMS.length - 1) {
+    setTimeout(() => {
+      if (state.responses[state.currentIndex] === value) {
+        nextQuestion();
+      }
+    }, 350);
+  }
+}
+
+function prevQuestion() {
+  if (state.currentIndex > 0) {
+    state.currentIndex--;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  }
+}
+
+function nextQuestion() {
+  if (state.responses[state.currentIndex] === null) return;
+  if (state.currentIndex < ITEMS.length - 1) {
+    state.currentIndex++;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  } else {
+    showResults();
+  }
+}
+
+// ============================================================================
+// SCORING
+// ============================================================================
+function computeScores() {
+  const sums = { "self-awareness": 0, "self-management": 0, "social-awareness": 0, "relationship-management": 0 };
+  const counts = { "self-awareness": 0, "self-management": 0, "social-awareness": 0, "relationship-management": 0 };
+
+  ITEMS.forEach((item, i) => {
+    const raw = state.responses[i];
+    // Reverse-scored items: 1->5, 2->4, 3->3, 4->2, 5->1
+    const scored = item.reverse ? (6 - raw) : raw;
+    sums[item.d] += scored;
+    counts[item.d]++;
+  });
+
+  // Convert each domain to a 0-100 percentage of maximum (5 items × 5 points = 25 max per domain)
+  const result = {};
+  Object.keys(sums).forEach(d => {
+    const max = counts[d] * 5;
+    const pct = Math.round((sums[d] / max) * 100);
+    result[d] = { raw: sums[d], pct: pct, band: bandFor(pct) };
+  });
+
+  return result;
+}
+
+function bandFor(pct) {
+  if (pct < 60) return "developing";
+  if (pct < 80) return "emerging";
+  return "strong";
+}
+
+function bandLabel(band) {
+  return { developing: "Developing", emerging: "Emerging", strong: "Strong" }[band];
+}
+
+// ============================================================================
+// RESULTS
+// ============================================================================
+function showResults() {
+  document.getElementById("questions").classList.add("hidden");
+  const resultsEl = document.getElementById("results");
+  resultsEl.classList.remove("hidden");
+  document.getElementById("progressFill").style.width = "100%";
+
+  const scores = computeScores();
+
+  // Find strongest and weakest domains
+  const sortedDomains = Object.entries(scores).sort((a, b) => b[1].pct - a[1].pct);
+  const strongest = sortedDomains[0];
+  const weakest = sortedDomains[sortedDomains.length - 1];
+
+  const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+  resultsEl.innerHTML = `
+    <div class="fade-in">
+      <div class="results-header">
+        <div class="eyebrow">Your Results  ·  ${today}</div>
+        <h1>Your EI Profile</h1>
+        <div class="gold-rule"></div>
+        <p class="lead">Your scores across the four domains of Goleman's mixed model. Read the interpretation for each domain. Pay particular attention to the development plan attached to your weakest area.</p>
+      </div>
+
+      <div class="chart-wrap">
+        <div id="radarChart"></div>
+      </div>
+
+      <div class="summary-cards">
+        <div class="summary-card strength">
+          <div class="label">Strongest</div>
+          <div class="name">${DOMAIN_META[strongest[0]].name}</div>
+          <div class="score">${strongest[1].pct}%</div>
+        </div>
+        <div class="summary-card gap">
+          <div class="label">Development priority</div>
+          <div class="name">${DOMAIN_META[weakest[0]].name}</div>
+          <div class="score">${weakest[1].pct}%</div>
+        </div>
+      </div>
+
+      <h2 style="margin-top:36px;margin-bottom:6px;">Domain by Domain</h2>
+      <p class="small" style="margin-bottom:8px;">Bands: Developing (under 60%), Emerging (60–79%), Strong (80%+)</p>
+
+      ${Object.keys(DOMAIN_META).map(d => {
+        const s = scores[d];
+        return `
+          <div class="domain-block">
+            <div class="domain-head">
+              <div class="dname">${DOMAIN_META[d].name}</div>
+              <div class="dscore">${s.pct}%</div>
+            </div>
+            <div class="domain-band band-${s.band}">${bandLabel(s.band)}</div>
+            <div class="interp">${INTERP[d][s.band]}</div>
+          </div>
+        `;
+      }).join('')}
+
+      <h2 style="margin-top:36px;margin-bottom:6px;">Your Development Plan</h2>
+      <p class="lead" style="margin-bottom:18px;">Based on your weakest domain: <strong style="color:var(--navy)">${DOMAIN_META[weakest[0]].name}</strong>.</p>
+
+      <div class="actions-block">
+        <h3>Three Actions to Practise</h3>
+        ${ACTIONS[weakest[0]].map((a, i) => `
+          <div class="action">
+            <span class="action-num">0${i + 1}</span>
+            <div>
+              <div class="action-text"><strong>${a.title}.</strong> ${a.text}</div>
+              <div class="cadence">${a.cadence}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="resources">
+        <h3>Further Reading</h3>
+        <div class="res-line"><strong>Book:</strong> ${RESOURCES[weakest[0]].book}</div>
+        <div class="res-line"><strong>Article:</strong> ${RESOURCES[weakest[0]].article}</div>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn secondary" onclick="window.print()">Save / Print Results</button>
+        <button class="btn" onclick="restartTest()">Retake</button>
+      </div>
+
+      <div class="footer-note">
+        Pedagogical instrument. Not a validated diagnostic.<br>
+        Kaduna Business School  ·  Executive Development Programme  ·  May 2026
+      </div>
+    </div>
+  `;
+
+  // Render radar chart after DOM is updated
+  setTimeout(() => renderRadarChart(scores), 50);
+  window.scrollTo(0, 0);
+}
+
+function renderRadarChart(scores) {
+  const container = document.getElementById("radarChart");
+  if (!container) return;
+
+  // SVG geometry — viewBox is wide enough to accommodate side labels in full
+  const vbW = 460;             // viewBox width — extra room for "Social Awareness" / "Self-Management" on sides
+  const vbH = 320;             // viewBox height
+  const cx = vbW / 2;
+  const cy = vbH / 2;
+  const maxRadius = 95;        // axis length from centre
+  const labelOffset = 18;      // distance of labels beyond axis end
+
+  // Domain order, clockwise from top
+  const domainOrder = ["self-awareness", "social-awareness", "relationship-management", "self-management"];
+  // Angles: top, right, bottom, left
+  const angles = [-Math.PI / 2, 0, Math.PI / 2, Math.PI];
+
+  // Helper to get x,y for given angle and radius
+  const xy = (angle, radius) => [
+    cx + Math.cos(angle) * radius,
+    cy + Math.sin(angle) * radius
+  ];
+
+  // Concentric grid levels (25, 50, 75, 100)
+  const gridLevels = [0.25, 0.5, 0.75, 1.0];
+  const gridPaths = gridLevels.map(level => {
+    const r = maxRadius * level;
+    const points = angles.map(a => xy(a, r).join(","));
+    return `<polygon points="${points.join(' ')}" fill="none" stroke="#E2E8F0" stroke-width="1" />`;
+  }).join("");
+
+  // Axis lines
+  const axisLines = angles.map(a => {
+    const [x, y] = xy(a, maxRadius);
+    return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#E2E8F0" stroke-width="1" />`;
+  }).join("");
+
+  // Data polygon
+  const dataPoints = domainOrder.map((d, i) => {
+    const r = maxRadius * (scores[d].pct / 100);
+    return xy(angles[i], r);
+  });
+  const dataPath = dataPoints.map(p => p.join(",")).join(" ");
+
+  // Data dots — each with a staggered reveal animation
+  const dataDots = dataPoints.map(([x, y], i) =>
+    `<circle cx="${x}" cy="${y}" r="5" fill="#C9A961" stroke="#1A2B3C" stroke-width="1.5"
+             style="opacity:0; animation: radarReveal 0.4s ${0.4 + i * 0.08}s cubic-bezier(0.4, 0, 0.2, 1) forwards;" />`
+  ).join("");
+
+  // Domain labels
+  const labels = domainOrder.map((d, i) => {
+    const [x, y] = xy(angles[i], maxRadius + labelOffset);
+    let anchor = "middle";
+    let dy = "0.35em";
+    if (i === 1) { anchor = "start"; }      // right
+    else if (i === 3) { anchor = "end"; }   // left
+    if (i === 0) { dy = "-0.2em"; }         // top: lift up
+    if (i === 2) { dy = "1em"; }            // bottom: drop down
+    return `
+      <text x="${x}" y="${y}" text-anchor="${anchor}" dy="${dy}"
+            font-family="Georgia, serif" font-size="13" fill="#1A2B3C" font-weight="600">
+        ${DOMAIN_META[d].short}
+      </text>
+      <text x="${x}" y="${y}" text-anchor="${anchor}" dy="${i === 0 ? '-1.5em' : (i === 2 ? '2.3em' : '1.6em')}"
+            font-family="Georgia, serif" font-style="italic" font-size="14" fill="#8C7340">
+        ${scores[d].pct}%
+      </text>
+    `;
+  }).join("");
+
+  // Tick labels (25, 50, 75, 100) along the top axis
+  const tickLabels = gridLevels.map(level => {
+    const y = cy - maxRadius * level;
+    return `<text x="${cx + 4}" y="${y}" font-family="-apple-system, sans-serif"
+                  font-size="9" fill="#A0AEC0" dy="0.3em">${Math.round(level * 100)}</text>`;
+  }).join("");
+
+  container.innerHTML = `
+    <svg viewBox="0 0 ${vbW} ${vbH}" xmlns="http://www.w3.org/2000/svg"
+         style="width:100%; height:auto; display:block;"
+         aria-label="EI domain scores radar chart">
+      ${gridPaths}
+      ${axisLines}
+      ${tickLabels}
+      <polygon points="${dataPath}"
+               fill="rgba(201, 169, 97, 0.22)"
+               stroke="#1A2B3C"
+               stroke-width="2"
+               style="opacity:0; animation: radarReveal 0.7s 0.15s cubic-bezier(0.4, 0, 0.2, 1) forwards;" />
+      ${dataDots}
+      ${labels}
+    </svg>
+    <style>
+      @keyframes radarReveal {
+        from { opacity: 0; transform: scale(0.92); transform-origin: center; }
+        to { opacity: 1; transform: scale(1); transform-origin: center; }
+      }
+    </style>
+  `;
+}
+
+function restartTest() {
+  state.responses = new Array(ITEMS.length).fill(null);
+  state.currentIndex = 0;
+  document.getElementById("results").classList.add("hidden");
+  document.getElementById("intro").classList.remove("hidden");
+  document.getElementById("progressFill").style.width = "0%";
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
